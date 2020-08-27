@@ -188,8 +188,7 @@ DUDE"
     else
       for idx in {2..254}; do
         PROPOSED_IP="${INTERFACE}.${idx}"
-        grep -q -R "${PROPOSED_IP}" /config/peer* | grep "Address"
-        if [[ $? -eq 1 ]]; then
+        if ! grep -q -R "${PROPOSED_IP}" /config/peer*/*.conf; then
           CLIENT_IP="${PROPOSED_IP}"
           break
         fi
